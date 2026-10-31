@@ -1,0 +1,519 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Eye Care Optical</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-3 p-2" style="width: 40px; height: 40px;">
+                    <i class="fas fa-glasses fs-5"></i>
+                </div>
+                <div>
+                    <h6 class="fw-bold mb-0 text-white">Eye Care Optical</h6>
+                    <small class="text-muted" style="font-size: 0.75rem;">Admin Control Center</small>
+                </div>
+            </div>
+
+            <nav class="admin-nav">
+                <a class="admin-nav-item active" data-target="viewDashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a class="admin-nav-item" data-target="viewProducts">
+                    <i class="fas fa-glasses"></i> Manage Products
+                </a>
+                <a class="admin-nav-item" data-target="viewOffers">
+                    <i class="fas fa-tags"></i> Special Offers
+                </a>
+                <a class="admin-nav-item" data-target="viewEnquiries">
+                    <i class="fas fa-inbox"></i> Customer Enquiries
+                    <span id="newEnquiriesBadge" class="badge bg-danger ms-auto"></span>
+                </a>
+                <a class="admin-nav-item" data-target="viewSettings">
+                    <i class="fas fa-cog"></i> Store Settings
+                </a>
+                <hr class="border-secondary my-2">
+                <a href="../index.html" target="_blank" class="admin-nav-item text-info">
+                    <i class="fas fa-external-link-alt"></i> View Live Website
+                </a>
+            </nav>
+
+            <div class="p-3 border-top border-secondary mt-auto">
+                <button id="adminLogoutBtn" class="btn btn-outline-light btn-sm w-100">
+                    <i class="fas fa-sign-out-alt me-1"></i> Log Out
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div>
+                    <h4 class="fw-bold text-dark mb-0">Management Portal</h4>
+                    <small class="text-muted">Eye Care Optical • Miraj (Branch 1: Kisan Chowk | Branch 2: Shivaji Maharaj Chowk)</small>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="../index.html" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        <i class="fas fa-globe me-1"></i> Visit Website
+                    </a>
+                </div>
+            </header>
+
+            <!-- 1. DASHBOARD VIEW -->
+            <section id="viewDashboard" class="admin-section-view">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-icon stat-icon-blue">
+                                <i class="fas fa-glasses"></i>
+                            </div>
+                            <div>
+                                <h3 id="statTotalProducts" class="fw-bold mb-0">0</h3>
+                                <div class="text-muted small">Total Products in Catalog</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-icon stat-icon-green">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div>
+                                <h3 id="statTotalOffers" class="fw-bold mb-0">0</h3>
+                                <div class="text-muted small">Active Promotional Offers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-icon stat-icon-amber">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h3 id="statTotalEnquiries" class="fw-bold mb-0">0</h3>
+                                <div class="text-muted small">Customer Enquiries & Bookings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Help / Instructions -->
+                <div class="card border-0 shadow-sm p-4 mb-4" style="background: linear-gradient(135deg, #eef5fc, #f8fafc);">
+                    <div class="d-flex gap-3">
+                        <div class="fs-1 text-primary"><i class="fas fa-info-circle"></i></div>
+                        <div>
+                            <h5 class="fw-bold text-primary mb-1">Informational Website Control</h5>
+                            <p class="text-muted mb-0 small">
+                                This website is designed for customer awareness, frame exploration, eye testing appointments, and inquiries via WhatsApp and phone. Any changes you make to products, offers, or contact details in this admin panel are instantly updated live across all pages of your website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. PRODUCTS MANAGEMENT VIEW -->
+            <section id="viewProducts" class="admin-section-view d-none">
+                <div class="admin-table-card mb-4">
+                    <div class="card-header">
+                        <div>
+                            <h5 class="fw-bold mb-0">Product Catalog Management</h5>
+                            <small class="text-muted">Add, update or remove eyewear, sunglasses & lenses</small>
+                        </div>
+                        <button class="btn btn-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <i class="fas fa-plus me-1"></i> Add New Product
+                        </button>
+                    </div>
+
+                    <!-- Search & Filter Controls -->
+                    <div class="p-3 bg-light border-bottom d-flex flex-wrap gap-2 justify-content-between">
+                        <div class="d-flex gap-2 flex-grow-1" style="max-width: 480px;">
+                            <input type="text" id="adminProductSearch" class="form-control form-control-sm" placeholder="Search by model or brand...">
+                        </div>
+                        <div>
+                            <select id="adminProductCategoryFilter" class="form-select form-select-sm">
+                                <option value="">All Categories</option>
+                                <option value="eyeglasses">Eyeglasses</option>
+                                <option value="sunglasses">Sunglasses</option>
+                                <option value="computer-glasses">Computer Glasses</option>
+                                <option value="contact-lenses">Contact Lenses</option>
+                                <option value="reading-glasses">Reading Glasses</option>
+                                <option value="kids-eyewear">Kids Eyewear</option>
+                                <option value="optical-lenses">Optical Lenses</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light small">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Model & Brand</th>
+                                    <th>Category</th>
+                                    <th>Specs</th>
+                                    <th>Price Range</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Populated dynamically by admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. OFFERS MANAGEMENT VIEW -->
+            <section id="viewOffers" class="admin-section-view d-none">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="fw-bold mb-0">Active Offers & Promotions</h5>
+                        <small class="text-muted">Manage seasonal deals and discount vouchers</small>
+                    </div>
+                    <button class="btn btn-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#addOfferModal">
+                        <i class="fas fa-plus me-1"></i> Add New Offer
+                    </button>
+                </div>
+                <div class="row" id="adminOffersGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- 4. ENQUIRIES VIEW -->
+            <section id="viewEnquiries" class="admin-section-view d-none">
+                <div class="admin-table-card">
+                    <div class="card-header">
+                        <div>
+                            <h5 class="fw-bold mb-0">Customer Inquiries & Eye Test Bookings</h5>
+                            <small class="text-muted">Enquiries submitted via website contact form or appointment scheduler</small>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light small">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Customer</th>
+                                    <th>Phone</th>
+                                    <th>Type / Service</th>
+                                    <th>Message / Time Slot</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="enquiriesTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. STORE SETTINGS VIEW -->
+            <section id="viewSettings" class="admin-section-view d-none">
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="fw-bold mb-3">Shop Details & Business Configuration</h5>
+                    <form id="storeSettingsForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Shop Name</label>
+                                <input type="text" id="setShopName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Brand Tagline</label>
+                                <input type="text" id="setTagline" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Primary Contact Phone</label>
+                                <input type="text" id="setPhone" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">WhatsApp Business Number</label>
+                                <input type="text" id="setWhatsapp" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Email Address</label>
+                                <input type="email" id="setEmail" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Opening Hours & Working Days</label>
+                                <input type="text" id="setTimings" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Full Physical Shop Address</label>
+                                <textarea id="setAddress" class="form-control" rows="2" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between align-items-center">
+                            <button type="submit" class="btn btn-primary px-4 fw-bold">
+                                <i class="fas fa-save me-1"></i> Save Changes Live
+                            </button>
+                            <div class="d-flex gap-2">
+                                <button type="button" id="exportBackupBtn" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-download me-1"></i> Export Data Backup
+                                </button>
+                                <button type="button" id="resetDefaultsBtn" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-undo me-1"></i> Reset to Sample Defaults
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL: ADD PRODUCT -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="addProductForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">Add New Optical Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Product Name</label>
+                                <input type="text" id="newProdName" class="form-control" required placeholder="e.g. Ray-Ban Hexagonal Flat">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Brand Name</label>
+                                <input type="text" id="newProdBrand" class="form-control" required placeholder="e.g. Ray-Ban / Vogue">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Category</label>
+                                <select id="newProdCategory" class="form-select" required>
+                                    <option value="eyeglasses">Eyeglasses</option>
+                                    <option value="sunglasses">Sunglasses</option>
+                                    <option value="computer-glasses">Computer Glasses</option>
+                                    <option value="contact-lenses">Contact Lenses</option>
+                                    <option value="reading-glasses">Reading Glasses</option>
+                                    <option value="kids-eyewear">Kids Eyewear</option>
+                                    <option value="optical-lenses">Optical Lenses</option>
+                                    <option value="accessories">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Frame Shape</label>
+                                <input type="text" id="newProdShape" class="form-control" required placeholder="e.g. Round, Aviator, Rectangular">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Material</label>
+                                <input type="text" id="newProdMaterial" class="form-control" required placeholder="e.g. Acetate, Titanium, TR-90">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Gender</label>
+                                <select id="newProdGender" class="form-select">
+                                    <option value="Unisex">Unisex</option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Kids">Kids</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Frame Size</label>
+                                <input type="text" id="newProdSize" class="form-control" placeholder="e.g. Medium (52mm)">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Indicative Price Range</label>
+                                <input type="text" id="newProdPrice" class="form-control" required placeholder="e.g. ₹2,499 - ₹3,999">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Image URL</label>
+                                <input type="url" id="newProdImage" class="form-control" placeholder="https://..." value="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Colors (comma separated)</label>
+                                <input type="text" id="newProdColors" class="form-control" placeholder="e.g. Matte Black, Gunmetal, Tortoise Shell">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Description</label>
+                                <textarea id="newProdDesc" class="form-control" rows="2" required placeholder="Short product description"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Key Features (comma separated)</label>
+                                <input type="text" id="newProdFeatures" class="form-control" placeholder="e.g. 100% UV400, Ultra-lightweight 14g, Spring hinges">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="newProdFeatured">
+                                    <label class="form-check-label" for="newProdFeatured">Mark as Featured</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="newProdBestSeller">
+                                    <label class="form-check-label" for="newProdBestSeller">Mark as Best Seller</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm px-4">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT PRODUCT -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="editProductForm">
+                    <input type="hidden" id="editProdId">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">Edit Optical Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Product Name</label>
+                                <input type="text" id="editProdName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Brand Name</label>
+                                <input type="text" id="editProdBrand" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Category</label>
+                                <select id="editProdCategory" class="form-select" required>
+                                    <option value="eyeglasses">Eyeglasses</option>
+                                    <option value="sunglasses">Sunglasses</option>
+                                    <option value="computer-glasses">Computer Glasses</option>
+                                    <option value="contact-lenses">Contact Lenses</option>
+                                    <option value="reading-glasses">Reading Glasses</option>
+                                    <option value="kids-eyewear">Kids Eyewear</option>
+                                    <option value="optical-lenses">Optical Lenses</option>
+                                    <option value="accessories">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Frame Shape</label>
+                                <input type="text" id="editProdShape" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Material</label>
+                                <input type="text" id="editProdMaterial" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Gender</label>
+                                <select id="editProdGender" class="form-select">
+                                    <option value="Unisex">Unisex</option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Kids">Kids</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Frame Size</label>
+                                <input type="text" id="editProdSize" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Indicative Price Range</label>
+                                <input type="text" id="editProdPrice" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Image URL</label>
+                                <input type="url" id="editProdImage" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Description</label>
+                                <textarea id="editProdDesc" class="form-control" rows="2" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="editProdFeatured">
+                                    <label class="form-check-label" for="editProdFeatured">Mark as Featured</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="editProdBestSeller">
+                                    <label class="form-check-label" for="editProdBestSeller">Mark as Best Seller</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm px-4">Update Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD OFFER -->
+    <div class="modal fade" id="addOfferModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addOfferForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">Create Special Offer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Offer Title</label>
+                            <input type="text" id="newOfferTitle" class="form-control" required placeholder="e.g. Festive Diwali 25% Off">
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Discount Tag</label>
+                                <input type="text" id="newOfferDiscount" class="form-control" required placeholder="e.g. 25% OFF / BOGO">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Coupon Code</label>
+                                <input type="text" id="newOfferCode" class="form-control" required placeholder="e.g. DIWALI25">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Description</label>
+                            <textarea id="newOfferDesc" class="form-control" rows="2" required placeholder="Describe the offer details"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Validity Period</label>
+                            <input type="text" id="newOfferValidity" class="form-control" required placeholder="e.g. Valid till 30th November">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Terms & Conditions</label>
+                            <input type="text" id="newOfferTerms" class="form-control" placeholder="e.g. Applicable on select frames.">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm px-4">Publish Offer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/products-data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
