@@ -35,21 +35,75 @@ It builds customer trust, displays designer spectacle frames, sunglasses, comput
 
 ---
 
-## ⚙️ Admin Content Management Panel (`/admin`)
+## ⚙️ Secure Admin Portal & Dashboard (`/admin`)
 
-A secure, intuitive browser-based Admin Panel built in pure JavaScript with LocalStorage synchronization. Any changes made in the admin panel reflect **instantly live** across the entire website!
+The website features a secure, dedicated Admin Portal built with **React, Vite, Bootstrap 5, Lucide React, and Firebase (Authentication, Firestore, Storage)** with seamless local fallback:
 
-- **Login URL**: `admin/login.html`
-- **Demo Username**: `admin`
-- **Demo Password**: `eyecare123`
+- **Admin Login Route**: `/admin/login`
+- **Admin Dashboard**: `/admin/dashboard`
+- **Product Management**: `/admin/products`
+- **Add Product (with Live Preview)**: `/admin/products/add`
+- **Edit Product**: `/admin/products/edit/:id`
+- **Diwali & Dussehra Offers**: `/admin/offers`
 
-### Admin Features:
-- **Dashboard Stats**: Real-time counters for Total Products, Active Offers, and Customer Enquiries.
-- **Product Management**: Add new frames, edit specifications, upload images, update prices, or delete products.
-- **Special Offers Management**: Add festival discounts, edit promo codes, and change validity periods.
-- **Customer Inquiries & Appointments**: View bookings submitted through the website, change status (New / Contacted / Resolved), and click the direct WhatsApp reply button to chat with the patient immediately!
-- **Store Settings**: Update shop name, phone numbers, WhatsApp number, address, and timings in one click.
-- **Data Export & Backup**: Export your entire website database as a JSON backup or reset to default sample data anytime.
+### Discreet Footer Access:
+An **Admin Portal** button is located in the footer bottom bar for authorized staff access without being visually prominent to regular public visitors.
+
+### Default / Offline Demo Credentials:
+- **Email / Username**: `admin@eyecareoptical.com` (or `admin`)
+- **Password**: `eyecare123`
+
+---
+
+## 🔒 Security & Firebase Configuration
+
+### 1. Environment Variables (`.env`)
+Copy `.env.example` to `.env` and fill in your Firebase project keys:
+```env
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_ADMIN_EMAILS=admin@eyecareoptical.com
+```
+
+### 2. Firestore Security Rules (`firestore.rules`)
+Public visitors have read-only access to active products and festival offers. Only authenticated admins in `VITE_ADMIN_EMAILS` or the `admins` collection can write, update, or delete records.
+
+### 3. Firebase Storage Rules (`storage.rules`)
+Image uploads are strictly validated:
+- Maximum file size: **5MB**
+- Allowed MIME types: `image/jpeg`, `image/png`, `image/webp`
+- Only authorized admins can upload or delete assets.
+
+---
+
+## 🪔 Exact Diwali & Dussehra Special Offers:
+1. **Unbreakable Blue Block Glasses** – ₹499
+2. **Fixed Goggles** – ₹99
+3. **Progressive Frames** – 50% OFF
+
+All offers can be dynamically updated, activated, or deactivated via the `/admin/offers` management page.
+
+---
+
+## 💻 Development & Build Commands
+
+```bash
+# Install dependencies
+npm.cmd install
+
+# Start Vite local development server
+npm.cmd run dev
+
+# Build for production
+npm.cmd run build
+
+# Preview production build locally
+npm.cmd run preview
+```
 
 ---
 

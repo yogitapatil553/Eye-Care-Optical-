@@ -6,9 +6,9 @@
 const DEFAULT_SETTINGS = {
     shopName: "Eye Care Optical",
     tagline: "Your Vision, Our Priority – Clearer Sight, Better Life",
-    phone: "+91 98765 43210",
-    altPhone: "+91 98765 43211",
-    whatsapp: "+91 98765 43210",
+    phone: "+91 84291 17155",
+    altPhone: "+91 72751 37171",
+    whatsapp: "+91 84291 17155",
     email: "info@eyecareoptical.com",
     address: "1st Branch: Laxmi Market, Kisan Chowk, Miraj | 2nd Branch: Chhatrapati Shivaji Maharaj Chowk, Dasara Chowk, Miraj",
     branch1: "Laxmi Market, Kisan Chowk, Miraj",
@@ -591,7 +591,7 @@ const EyeCareStore = {
 // Initialize or refresh settings with updated branches
 try {
     const existingSettings = localStorage.getItem("eyecare_settings");
-    if (!existingSettings || existingSettings.includes("Pune") || !existingSettings.includes("Miraj")) {
+    if (!existingSettings || existingSettings.includes("Pune") || !existingSettings.includes("Miraj") || !existingSettings.includes("84291")) {
         EyeCareStore.saveSettings(DEFAULT_SETTINGS);
     }
 } catch (e) {

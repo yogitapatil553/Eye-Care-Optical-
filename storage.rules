@@ -1,0 +1,35 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Check if the request is from an authenticated admin
+    function isAdmin() {
+      return request.auth != null && 
+        (
+          request.auth.token.admin == true || 
+          request.auth.token.email.matches('.*@eyecareoptical[.]com')
+        );
+    }
+
+    // Product Images Directory
+    // Public can view/read all images.
+    // Only authorized admins can upload, replace or delete images.
+    // Restrict file size to <= 5MB and only allowed image formats.
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() &&
+                      request.resource.size < 5 * 1024 * 1024 &&
+                      request.resource.contentType.matches('image/(jpeg|png|webp|jpg)');
+      allow delete: if isAdmin();
+    }
+
+    // Offer Images Directory
+    match /offers/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() &&
+                      request.resource.size < 5 * 1024 * 1024 &&
+                      request.resource.contentType.matches('image/(jpeg|png|webp|jpg)');
+      allow delete: if isAdmin();
+    }
+  }
+}
