@@ -1834,6 +1834,61 @@ img {
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
+  background-color: #051628;
+}
+
+/* 0. Cinematic Background Video (Eye & 3D Rotating Optical Lens) */
+.hero-cinematic-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  filter: contrast(1.08) saturate(1.15) brightness(0.92);
+  will-change: transform;
+}
+
+/* Gradient Readability Overlay (Left dark for text & CTA, Right open for cinematic eye/lens) */
+.hero-video-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, 
+      rgba(5, 22, 40, 0.95) 0%, 
+      rgba(7, 28, 52, 0.90) 35%, 
+      rgba(7, 32, 58, 0.72) 58%, 
+      rgba(5, 22, 40, 0.38) 78%, 
+      rgba(5, 22, 40, 0.18) 100%
+    ),
+    linear-gradient(180deg, 
+      rgba(5, 22, 40, 0.6) 0%, 
+      transparent 18%, 
+      transparent 82%, 
+      rgba(5, 22, 40, 0.75) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 991.98px) {
+  .hero-cinematic-video {
+    object-position: center center;
+    opacity: 0.75;
+  }
+  .hero-video-gradient-overlay {
+    background: linear-gradient(180deg, 
+      rgba(5, 22, 40, 0.94) 0%, 
+      rgba(7, 28, 52, 0.85) 45%, 
+      rgba(7, 32, 58, 0.88) 100%
+    );
+  }
 }
 
 /* 1. Fluid Optical Mesh Gradient */

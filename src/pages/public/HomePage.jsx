@@ -128,10 +128,18 @@ const HomePage = ({ onOpenAppointment }) => {
               </div>
             </div>
 
-            {/* Hero Right Visual with Floating Animated Logo Card */}
+            {/* Hero Right Visual with Floating Animated Logo Card (Glassmorphic) */}
             <div className="col-12 col-lg-5 text-center">
               <div className="position-relative d-inline-block hero-animate-float">
-                <div className="bg-white p-3 p-md-4 rounded-4 shadow-lg border text-center hero-glow-card">
+                <div
+                  className="p-3 p-md-4 rounded-4 shadow-lg border text-center hero-glow-card"
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.92)",
+                    backdropFilter: "blur(14px)",
+                    WebkitBackdropFilter: "blur(14px)",
+                    borderColor: "rgba(255, 255, 255, 0.5)"
+                  }}
+                >
                   <img
                     src={logoImg}
                     alt="Eye Care Optical Showcase"
@@ -150,8 +158,15 @@ const HomePage = ({ onOpenAppointment }) => {
 
                 {/* Floating Festive Mini-Card */}
                 <div
-                  className="position-absolute bottom-0 start-0 m-3 p-3 bg-white text-dark rounded-4 shadow-lg text-start hero-animate-float-reverse d-none d-sm-block"
-                  style={{ maxWidth: "250px", zIndex: 3 }}
+                  className="position-absolute bottom-0 start-0 m-3 p-3 text-dark rounded-4 shadow-lg text-start hero-animate-float-reverse d-none d-sm-block"
+                  style={{
+                    maxWidth: "250px",
+                    zIndex: 3,
+                    backgroundColor: "rgba(255, 255, 255, 0.95)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                    borderColor: "rgba(255, 255, 255, 0.5)"
+                  }}
                 >
                   <div className="d-flex align-items-center gap-2 mb-1">
                     <span className="badge bg-danger text-white">{t("heroFestivalBadge")}</span>

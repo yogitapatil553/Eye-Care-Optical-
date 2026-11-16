@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import heroVideo from "../../assets/hero-eye-optical.mp4";
 
 /**
  * HeroBackgroundAnimation Component
- * Specially designed innovative optical background animation exclusively for the Hero section.
+ * Ultra-realistic cinematic website hero background video for Eye Care Optical.
+ * 
  * Features:
- * - Floating spectacles (Wayfarer, Round Panto, Aviator, and Hexagonal Geometric designer frames)
- *   floating in 3D parallax layers with anti-reflective lens gleams
- * - Fluid optical mesh gradient (deep sapphire & cyan)
- * - Refractive anti-reflective (AR) lens sweep ray
- * - Animated optometric precision reticles & spectacle axis calibration arcs
- * - Dynamic bokeh vision orbs (floating refraction optics)
- * - Twinkling optic light motes / micro-particles
- * All elements have pointer-events: none and GPU-accelerated transforms for 60fps performance.
+ * - 4K-grade cinematic video: extreme close-up of human eye with reflections,
+ *   subtle blue/cyan glow, 3D rotating optical lens, and smooth transition.
+ * - Left side dark readability gradient overlay for website heading and CTA buttons.
+ * - Main eye and optical visuals preserved vibrantly on the right side.
+ * - Seamless looping, autoplay, muted, playsInline.
+ * - Blended with floating spectacles, subtle reticles and optic light particles.
  */
 const HeroBackgroundAnimation = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log("Hero video autoplay notice:", err?.message || err);
+        });
+      }
+    }
+  }, []);
+
   // Array of 14 floating optical light motes with individual positions and delays
   const particles = [
     { left: "12%", top: "25%", size: 4, delay: "0s", duration: "7s", color: "#38bdf8" },
@@ -34,18 +48,32 @@ const HeroBackgroundAnimation = () => {
 
   return (
     <div className="hero-innovative-bg" aria-hidden="true">
-      {/* 1. Fluid Optical Deep Mesh Gradient */}
-      <div className="hero-bg-mesh" />
+      {/* 1. Cinematic Background Video (Human Eye & 3D Rotating Optical Lens) */}
+      <video
+        ref={videoRef}
+        className="hero-cinematic-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      >
+        <source src={heroVideo} type="video/mp4" />
+        <source src="/videos/hero-eye-optical.mp4" type="video/mp4" />
+      </video>
 
-      {/* 2. Precision Vision Grid with Radial Vignette */}
-      <div className="hero-bg-grid" />
+      {/* 2. Gradient Readability Overlay (Left dark for heading & CTAs, Right open for eye visual) */}
+      <div className="hero-video-gradient-overlay" />
+
+      {/* 3. Subtle Futuristic Optical Grid */}
+      <div className="hero-bg-grid" style={{ zIndex: 2, opacity: 0.35 }} />
 
       {/* ====================================================================
-          3. FLOATING SPECTACLES (Behind animation elements, fully visible)
+          4. FLOATING SPECTACLES (Behind animation elements, fully visible)
           ==================================================================== */}
 
       {/* Spectacle 1: Large Modern Wayfarer (Upper Right Background) */}
-      <div className="hero-floating-spectacle hero-spectacle-1">
+      <div className="hero-floating-spectacle hero-spectacle-1" style={{ zIndex: 2 }}>
         <svg viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-100 h-auto">
           <defs>
             <linearGradient id="specGlow1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -112,7 +140,7 @@ const HeroBackgroundAnimation = () => {
       </div>
 
       {/* Spectacle 2: Round Intellectual Panto Frame (Lower Left Background) */}
-      <div className="hero-floating-spectacle hero-spectacle-2">
+      <div className="hero-floating-spectacle hero-spectacle-2" style={{ zIndex: 2 }}>
         <svg viewBox="0 0 360 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-100 h-auto">
           <defs>
             <linearGradient id="specGlow2" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -155,7 +183,7 @@ const HeroBackgroundAnimation = () => {
       </div>
 
       {/* Spectacle 3: Modern Aviator Double-Bridge Frame (Upper Center/Left Background) */}
-      <div className="hero-floating-spectacle hero-spectacle-3">
+      <div className="hero-floating-spectacle hero-spectacle-3" style={{ zIndex: 2 }}>
         <svg viewBox="0 0 380 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-100 h-auto">
           <defs>
             <linearGradient id="specGlow3" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -197,7 +225,7 @@ const HeroBackgroundAnimation = () => {
       </div>
 
       {/* Spectacle 4: Hexagonal Geometric Eyeglasses (Lower Right Background) */}
-      <div className="hero-floating-spectacle hero-spectacle-4">
+      <div className="hero-floating-spectacle hero-spectacle-4" style={{ zIndex: 2 }}>
         <svg viewBox="0 0 340 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-100 h-auto">
           <defs>
             <linearGradient id="specGlow4" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -230,21 +258,16 @@ const HeroBackgroundAnimation = () => {
       </div>
 
       {/* ====================================================================
-          4. OPTICAL LIGHT SWEEP & RETICLES & ORBS
+          5. OPTICAL LIGHT SWEEP & RETICLES & PARTICLES
           ==================================================================== */}
 
-      {/* Anti-Reflective Lens Flare / Light Sweep (Sweeps over spectacles) */}
-      <div className="hero-bg-sweep" />
+      {/* Anti-Reflective Lens Flare / Light Sweep (Sweeps over video and spectacles) */}
+      <div className="hero-bg-sweep" style={{ zIndex: 2, opacity: 0.6 }} />
 
-      {/* Refractive Bokeh Vision Orbs */}
-      <div className="hero-bokeh-orb hero-orb-1" />
-      <div className="hero-bokeh-orb hero-orb-2" />
-      <div className="hero-bokeh-orb hero-orb-3" />
-
-      {/* Precision Optical SVG Reticles & Axis Arcs (Theme: Eye Testing & Lens Geometry) */}
+      {/* Precision Optical SVG Reticles & Axis Arcs */}
       <svg
         className="position-absolute top-0 end-0 w-100 h-100"
-        style={{ pointerEvents: "none", zIndex: 1, opacity: 0.65 }}
+        style={{ pointerEvents: "none", zIndex: 2, opacity: 0.65 }}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -259,7 +282,7 @@ const HeroBackgroundAnimation = () => {
           </radialGradient>
         </defs>
 
-        {/* Reticle 1: Precision Lens Phoropter Reticle (Upper Right - behind visual card) */}
+        {/* Reticle 1: Precision Lens Reticle (Upper Right) */}
         <g transform="translate(850, 180)" className="hero-reticle-ring">
           <circle
             cx="0"
@@ -279,8 +302,6 @@ const HeroBackgroundAnimation = () => {
             stroke="rgba(255, 255, 255, 0.18)"
             strokeWidth="1"
           />
-
-          {/* Eyeglass Axis Degree Ticks (Every 30 degrees) */}
           {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => (
             <line
               key={deg}
@@ -293,8 +314,6 @@ const HeroBackgroundAnimation = () => {
               transform={`rotate(${deg})`}
             />
           ))}
-
-          {/* Optical Axis Crosshairs */}
           <line x1="-185" y1="0" x2="-135" y2="0" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="1.5" />
           <line x1="135" y1="0" x2="185" y2="0" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="1.5" />
           <line x1="0" y1="-185" x2="0" y2="-135" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="1.5" />
@@ -325,7 +344,7 @@ const HeroBackgroundAnimation = () => {
           <circle cx="0" cy="0" r="4" fill="#ffffff" opacity="0.9" />
         </g>
 
-        {/* Reticle 2: Spectacle Lens Curvature & Degree Arc (Bottom Left - behind intro text) */}
+        {/* Reticle 2: Spectacle Lens Curvature & Degree Arc (Bottom Left) */}
         <g transform="translate(180, 480)" className="hero-reticle-ring-rev">
           <path
             d="M -130 0 A 130 130 0 0 1 130 0"
@@ -357,7 +376,7 @@ const HeroBackgroundAnimation = () => {
         </g>
       </svg>
 
-      {/* 5. Twinkling Floating Optic Light Particles */}
+      {/* 6. Twinkling Floating Optic Light Particles */}
       {particles.map((pt, idx) => (
         <span
           key={idx}
@@ -370,7 +389,8 @@ const HeroBackgroundAnimation = () => {
             backgroundColor: pt.color,
             boxShadow: `0 0 8px ${pt.color}, 0 0 16px ${pt.color}`,
             animationDelay: pt.delay,
-            animationDuration: pt.duration
+            animationDuration: pt.duration,
+            zIndex: 2
           }}
         />
       ))}
