@@ -1891,3 +1891,210 @@ img {
   }
 }
 
+/* ==========================================================================
+   FULL PAGE LIGHT / DARK THEME & AMBIENT ANIMATION
+   (Hero Section Strictly Untouched)
+   ========================================================================== */
+
+/* 1. Global Smooth Theme & Ambient Transitions */
+body,
+.navbar,
+header.navbar,
+.card,
+section:not(.hero-section),
+footer,
+.modal-content,
+.dropdown-menu,
+.table,
+.list-group-item,
+.bg-white:not(.hero-section *),
+.bg-light:not(.hero-section *) {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 2. Full Page Ambient Light-Dark Breathing Animation */
+body.ambient-light-dark-active::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  animation: fullPageLightDarkAmbient 12s ease-in-out infinite alternate;
+}
+
+@keyframes fullPageLightDarkAmbient {
+  0% {
+    opacity: 0.2;
+    background: radial-gradient(circle at 15% 25%, rgba(56, 189, 248, 0.05) 0%, transparent 65%);
+  }
+  50% {
+    opacity: 0.55;
+    background: radial-gradient(circle at 85% 65%, rgba(0, 196, 159, 0.06) 0%, transparent 60%);
+  }
+  100% {
+    opacity: 0.3;
+    background: radial-gradient(circle at 50% 85%, rgba(13, 59, 102, 0.05) 0%, transparent 70%);
+  }
+}
+
+/* 3. Dark Mode Core Styles */
+body.theme-dark {
+  background-color: #0b1120 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Hero section strictly untouched */
+body.theme-dark .hero-section {
+  /* Preserves original cinematic video background and dark styling completely */
+}
+
+/* Navbar in Dark Mode */
+body.theme-dark .navbar.bg-white,
+body.theme-dark header.bg-white {
+  background-color: rgba(11, 17, 32, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.theme-dark .navbar-brand .text-dark {
+  color: #f8fafc !important;
+}
+
+body.theme-dark .nav-link {
+  color: #94a3b8 !important;
+}
+
+body.theme-dark .nav-link:hover,
+body.theme-dark .nav-link.active {
+  color: #00c49f !important;
+}
+
+body.theme-dark .navbar-toggler {
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Page Sections in Dark Mode (Excluding Hero Section) */
+body.theme-dark section:not(.hero-section).bg-white,
+body.theme-dark div:not(.hero-section).bg-white {
+  background-color: #0f172a !important;
+  color: #cbd5e1 !important;
+}
+
+body.theme-dark section:not(.hero-section).bg-light,
+body.theme-dark div:not(.hero-section).bg-light {
+  background-color: #0b1120 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Cards & Surface Containers */
+body.theme-dark .card,
+body.theme-dark .shadow-sm:not(.hero-section *),
+body.theme-dark .shadow:not(.hero-section *) {
+  background-color: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f1f5f9 !important;
+}
+
+body.theme-dark .card:hover {
+  border-color: rgba(0, 196, 159, 0.35) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Text and Headings in Dark Mode */
+body.theme-dark .text-dark,
+body.theme-dark h1:not(.hero-section *),
+body.theme-dark h2:not(.hero-section *),
+body.theme-dark h3:not(.hero-section *),
+body.theme-dark h4:not(.hero-section *),
+body.theme-dark h5:not(.hero-section *),
+body.theme-dark h6:not(.hero-section *) {
+  color: #f8fafc !important;
+}
+
+body.theme-dark .text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Modals & Dialogs in Dark Mode */
+body.theme-dark .modal-content {
+  background-color: #111827 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body.theme-dark .modal-header,
+body.theme-dark .modal-footer {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.theme-dark .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+body.theme-dark .form-control,
+body.theme-dark .form-select {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+body.theme-dark .form-control:focus,
+body.theme-dark .form-select:focus {
+  background-color: #1f2937 !important;
+  border-color: #00c49f !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 196, 159, 0.25) !important;
+}
+
+/* Footer & Top Bar */
+body.theme-dark footer {
+  background-color: #050b14 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Borders in Dark Mode */
+body.theme-dark .border,
+body.theme-dark .border-top,
+body.theme-dark .border-bottom,
+body.theme-dark .border-start,
+body.theme-dark .border-end {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Theme Toggle Button & Animation */
+.theme-toggle-btn {
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.06);
+}
+
+body.theme-dark .theme-toggle-btn {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+.theme-spin {
+  animation: themeIconSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes themeIconSpin {
+  0% {
+    transform: rotate(-120deg) scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 // Layout & Common
 import Header from "./components/common/Header";
@@ -68,9 +69,10 @@ function App() {
   const handleCloseAppointment = () => setAppointmentOpen(false);
 
   return (
-    <LanguageProvider>
-      <AuthProvider>
-        <ScrollToTop />
+    <ThemeProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <ScrollToTop />
         <Routes>
         {/* Admin Login (Publicly accessible but separate portal) */}
         <Route path="/admin/login" element={<AdminLoginPage />} />
@@ -247,8 +249,9 @@ function App() {
         isOpen={appointmentOpen}
         onClose={handleCloseAppointment}
       />
-      </AuthProvider>
-    </LanguageProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

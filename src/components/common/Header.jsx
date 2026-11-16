@@ -9,15 +9,19 @@ import {
   Menu,
   X,
   CalendarCheck,
-  Globe
+  Globe,
+  Sun,
+  Moon
 } from "lucide-react";
 import { DEFAULT_STORE_SETTINGS } from "../../data/initialData";
 import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
 import logoImg from "../../assets/logo.jpg";
 
 const Header = ({ onOpenAppointment }) => {
   const [navOpen, setNavOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { theme, toggleTheme, isDark } = useTheme();
 
   return (
     <>
@@ -71,6 +75,18 @@ const Header = ({ onOpenAppointment }) => {
                   मराठी
                 </button>
               </div>
+
+              {/* Animated Light/Dark Theme Switcher in Topbar */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="btn btn-sm py-0 px-2 rounded-pill d-inline-flex align-items-center gap-1 border border-secondary border-opacity-50 text-light theme-toggle-btn ms-1"
+                style={{ fontSize: "0.72rem", lineHeight: "1.4" }}
+                title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              >
+                {isDark ? <Sun size={12} className="text-warning theme-spin" /> : <Moon size={12} className="text-info theme-spin" />}
+                <span>{isDark ? (language === "mr" ? "लाईट" : "Light") : (language === "mr" ? "डार्क" : "Dark")}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -97,8 +113,20 @@ const Header = ({ onOpenAppointment }) => {
             </div>
           </Link>
 
-          {/* Mobile Right Controls: Language Switcher + Book Button + Hamburger */}
+          {/* Mobile Right Controls: Language Switcher + Theme Toggle + Book Button + Hamburger */}
           <div className="d-flex align-items-center gap-2 d-xl-none">
+            {/* Mobile Animated Theme Toggle */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="btn btn-sm btn-light border rounded-pill p-1 d-flex align-items-center justify-content-center theme-toggle-btn shadow-xs"
+              style={{ width: "30px", height: "30px" }}
+              title={isDark ? "Light Mode" : "Dark Mode"}
+              aria-label="Toggle Theme"
+            >
+              {isDark ? <Sun size={14} className="text-warning theme-spin" /> : <Moon size={14} className="text-primary theme-spin" />}
+            </button>
+
             {/* Mobile Language Switcher */}
             <div className="btn-group btn-group-sm rounded-pill overflow-hidden border" style={{ padding: "1px" }}>
               <button
@@ -195,8 +223,21 @@ const Header = ({ onOpenAppointment }) => {
               </li>
             </ul>
 
-            {/* Right Action CTA & Language Toggle */}
+            {/* Right Action CTA, Theme Toggle & Language Toggle */}
             <div className="d-none d-xl-flex align-items-center gap-2">
+              {/* Desktop Animated Light/Dark Theme Switcher */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="btn btn-sm btn-light border rounded-pill px-2 py-1 d-flex align-items-center gap-1 shadow-xs theme-toggle-btn me-1"
+                style={{ fontSize: "0.78rem" }}
+                title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                aria-label="Toggle Theme"
+              >
+                {isDark ? <Sun size={15} className="text-warning theme-spin" /> : <Moon size={15} className="text-primary theme-spin" />}
+                <span className="fw-semibold">{isDark ? (language === "mr" ? "लाईट" : "Light") : (language === "mr" ? "डार्क" : "Dark")}</span>
+              </button>
+
               {/* Language Switcher pill in navbar */}
               <div className="btn-group btn-group-sm rounded-pill overflow-hidden border shadow-xs me-1">
                 <button
