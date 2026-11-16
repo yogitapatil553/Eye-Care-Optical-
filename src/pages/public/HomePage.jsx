@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import ProductCard from "../../components/common/ProductCard";
 import ProductDetailsModal from "../../components/common/ProductDetailsModal";
+import HeroBackgroundAnimation from "../../components/common/HeroBackgroundAnimation";
 import { getProducts } from "../../services/productService";
 import { getFestivalOffers } from "../../services/offerService";
 import { useLanguage } from "../../context/LanguageContext";
@@ -60,23 +61,15 @@ const HomePage = ({ onOpenAppointment }) => {
 
   return (
     <>
-      {/* Animated Hero Section */}
+      {/* Animated Hero Section (Innovative Optical Animation - Hero Only) */}
       <section
         className="hero-section position-relative text-white py-5 d-flex align-items-center overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #07203a 0%, #0d3b66 55%, #028090 100%)",
-          minHeight: "580px"
+          minHeight: "590px"
         }}
       >
-        {/* Animated Background Glow Orbs */}
-        <div
-          className="hero-circle-accent hero-animate-float"
-          style={{ width: "350px", height: "350px", top: "-50px", right: "10%" }}
-        />
-        <div
-          className="hero-circle-accent hero-animate-float-reverse"
-          style={{ width: "250px", height: "250px", bottom: "-30px", left: "5%" }}
-        />
+        {/* Innovative Optical Background Animation (Exclusively on Hero Section) */}
+        <HeroBackgroundAnimation />
 
         <div className="container py-4 position-relative" style={{ zIndex: 2 }}>
           <div className="row align-items-center g-5">
