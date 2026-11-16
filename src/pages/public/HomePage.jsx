@@ -173,11 +173,11 @@ const HomePage = ({ onOpenAppointment }) => {
         </div>
       </section>
 
-      {/* STATE-OF-THE-ART OPTICAL LAB & ABOUT SECTION (With User's Logo) */}
+      {/* ABOUT SECTION (With User's Logo) */}
       <section className="py-5 bg-white">
         <div className="container">
           <div className="row align-items-center g-5">
-            {/* Left Column: Official Logo in State-of-the-Art Optical Lab Card */}
+            {/* Left Column: Official Logo Card */}
             <div className="col-12 col-lg-6">
               <div
                 className="position-relative bg-white rounded-4 shadow-lg p-4 text-center d-flex align-items-center justify-content-center border hero-glow-card"
@@ -185,15 +185,10 @@ const HomePage = ({ onOpenAppointment }) => {
               >
                 <img
                   src={logoImg}
-                  alt="Eye Care Optical Lab Logo"
+                  alt="Eye Care Optical Logo"
                   className="rounded-3 shadow-sm object-fit-contain hero-animate-float"
-                  style={{ maxHeight: "250px", maxWidth: "90%" }}
+                  style={{ maxHeight: "280px", maxWidth: "90%" }}
                 />
-                {/* Floating "State-of-the-Art Optical Lab" Badge as requested */}
-                <div className="p-3 p-md-4 bg-white rounded-3 shadow position-absolute bottom-0 end-0 m-3 m-md-4 border-start border-4 border-primary text-start">
-                  <h5 className="fw-bold text-primary mb-1">{t("labTitle")}</h5>
-                  <small className="text-muted">{t("labSubtitle")}</small>
-                </div>
               </div>
             </div>
 
